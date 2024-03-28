@@ -25,6 +25,7 @@
         <button class="addBtn">Add Task</button>
         <br />
         <input
+          id="filter"
           type="text"
           placeholder="Search through your tasks if you need to ..."
           class="searchInput"
@@ -66,8 +67,19 @@
             </button>
           </div>
         </li>
-        <button id="clearAll">Clear All Items</button>
+        <li class="item">
+          <span>Shopping at the mall</span>
+          <div class="btnContainer">
+            <button class="editBtn">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="deleteBtn">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+        </li>
       </ul>
+      <button id="clearAll">Clear All Items</button>
     </div>
 
     <script src="./script.js"></script>

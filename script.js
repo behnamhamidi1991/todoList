@@ -2,6 +2,8 @@ const itemForm = document.getElementById('form');
 const itemInput = document.getElementById('formInput');
 const itemList = document.getElementById('itemList');
 const clearBtn = document.getElementById('clearAll');
+const items = itemList.querySelectorAll('li');
+const filterInput = document.getElementById('filter');
 
 function addItem(e) {
   e.preventDefault();
@@ -23,6 +25,9 @@ function addItem(e) {
   li.appendChild(btnContainer);
 
   itemList.appendChild(li);
+
+  checkUI();
+
   itemInput.value = '';
 }
 
@@ -77,9 +82,18 @@ function createDeleteIcon(classes) {
 
 // @ Remove Item
 function removeItem(e) {
-  if (e.target.parentElement.classList.contains('deleteBtn')) {
+  let element = e.target;
+  while (element != null && !element.classList.contains('deleteBtn')) {
+    element = element.parentElement;
+  }
+
+  if (
+    element != null &&
+    e.target.parentElement.classList.contains('deleteBtn')
+  ) {
     e.target.parentElement.parentElement.parentElement.remove();
   }
+  checkUI();
 }
 
 function clearItems() {
@@ -88,9 +102,30 @@ function clearItems() {
       itemList.removeChild(itemList.firstChild);
     }
   }
+  checkUI();
 }
+
+function checkUI() {
+  const items = itemList.querySelectorAll('li');
+
+  if (items.length === 0) {
+    clearBtn.style.display = 'none';
+    filterInput.style.display = 'none';
+  } else {
+    clearBtn.style.display = 'block';
+    filterInput.style.display = 'block';
+  }
+}
+
+function filterItems(e) {
+  const text = e.target.value;
+  console.log(text);
+}
+
+checkUI();
 
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearItems);
+filterInput.addEventListener('input', filterItems);
