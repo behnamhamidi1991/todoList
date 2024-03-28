@@ -1,2 +1,6 @@
-99
-00:02:41
+finished 99
+
+start from 100
+LocalStorage
+
+Learn both Local and Session Storage well

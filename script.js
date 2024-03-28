@@ -2,7 +2,6 @@ const itemForm = document.getElementById('form');
 const itemInput = document.getElementById('formInput');
 const itemList = document.getElementById('itemList');
 const clearBtn = document.getElementById('clearAll');
-const items = itemList.querySelectorAll('li');
 const filterInput = document.getElementById('filter');
 
 function addItem(e) {
@@ -105,6 +104,21 @@ function clearItems() {
   checkUI();
 }
 
+function filterItems(e) {
+  const items = itemList.querySelectorAll('li');
+  const text = e.target.value.toLowerCase();
+
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase();
+
+    if (itemName.indexOf(text) != -1) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
 function checkUI() {
   const items = itemList.querySelectorAll('li');
 
@@ -117,11 +131,6 @@ function checkUI() {
   }
 }
 
-function filterItems(e) {
-  const text = e.target.value;
-  console.log(text);
-}
-
 checkUI();
 
 // Event Listeners
@@ -129,3 +138,5 @@ itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearItems);
 filterInput.addEventListener('input', filterItems);
+
+// console.log(items.firstChild.innerHTML);
