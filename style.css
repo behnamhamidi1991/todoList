@@ -42,7 +42,7 @@ a {
   border-radius: 4px;
 }
 
-#todoContainer form input {
+#todoContainer form #formInput {
   width: 100%;
   padding: 10px 7px;
   border: none;
@@ -111,4 +111,34 @@ a {
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
+}
+
+.searchInput {
+  background: transparent;
+  color: rgb(188, 188, 188);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid rgb(82, 82, 82);
+  outline: none;
+  margin-top: 15px;
+  width: 100%;
+  padding: 6px;
+}
+
+#clearAll {
+  background: none;
+  border: none;
+  padding: 5px;
+  border: 1px solid tomato;
+  color: #fff;
+  font-weight: 300;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+#clearAll:hover {
+  border-color: red;
 }

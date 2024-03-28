@@ -1,6 +1,7 @@
 const itemForm = document.getElementById('form');
 const itemInput = document.getElementById('formInput');
 const itemList = document.getElementById('itemList');
+const clearBtn = document.getElementById('clearAll');
 
 function addItem(e) {
   e.preventDefault();
@@ -74,5 +75,22 @@ function createDeleteIcon(classes) {
   return icon;
 }
 
+// @ Remove Item
+function removeItem(e) {
+  if (e.target.parentElement.classList.contains('deleteBtn')) {
+    e.target.parentElement.parentElement.parentElement.remove();
+  }
+}
+
+function clearItems() {
+  if (window.confirm('Are you sure you want to clear all items?')) {
+    while (itemList.firstChild) {
+      itemList.removeChild(itemList.firstChild);
+    }
+  }
+}
+
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
+clearBtn.addEventListener('click', clearItems);
