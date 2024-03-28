@@ -16,17 +16,31 @@ function addItem(e) {
   // Create list item
   const li = document.createElement('li');
   li.appendChild(document.createTextNode(newItem));
+  li.className = 'item';
 
-  const editBtn = createEditButton('editBtn');
-  const deleteBtn = createDeleteButton('deleteBtn');
+  const btnContainer = createBtnContainer('btnContainer');
+  li.appendChild(btnContainer);
 
-  li.appendChild(editBtn);
-  li.appendChild(deleteBtn);
-
-  console.log(li);
+  itemList.appendChild(li);
+  itemInput.value = '';
 }
 
-function createEditButton(classes) {
+// Create Btn Container
+function createBtnContainer(classes) {
+  const btnContainer = document.createElement('div');
+  btnContainer.className = classes;
+
+  const deleteBtn = createDeleteBtn('deleteBtn');
+  const editBtn = createEditBtn('editBtn');
+
+  btnContainer.appendChild(editBtn);
+  btnContainer.appendChild(deleteBtn);
+
+  return btnContainer;
+}
+
+// Create Buttons
+function createEditBtn(classes) {
   const button = document.createElement('button');
   button.className = classes;
 
@@ -35,14 +49,18 @@ function createEditButton(classes) {
 
   return button;
 }
-function createDeleteButton(classes) {
+
+function createDeleteBtn(classes) {
   const button = document.createElement('button');
   button.className = classes;
+
   const icon = createDeleteIcon('fa fa-trash');
   button.appendChild(icon);
 
   return button;
 }
+
+// Create Icons
 
 function createEditIcon(classes) {
   const icon = document.createElement('i');
