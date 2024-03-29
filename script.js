@@ -125,10 +125,15 @@ function filterItems(e) {
   });
 }
 
+function taskDone(e) {
+  const element = e.target;
+}
+
 checkUI();
 
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
+itemList.addEventListener('click', taskDone);
 clearBtn.addEventListener('click', removeAll);
 filterInput.addEventListener('input', filterItems);
