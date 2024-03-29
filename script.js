@@ -33,7 +33,10 @@ function createButtonContainer(classes) {
 
   const editButton = createEditButton('editBtn');
   const deleteButton = createDeleteButton('deleteBtn');
+  const checkedButton = createCheckedButton('checkedBtn');
 
+  // div.appendChild(checkedButton);
+  div.appendChild(checkedButton);
   div.appendChild(editButton);
   div.appendChild(deleteButton);
 
@@ -61,6 +64,18 @@ function createDeleteButton(classes) {
   return button;
 }
 
+function createCheckedButton(classes) {
+  const button = document.createElement('button');
+  button.className = classes;
+
+  const checkedIcon = createCheckedIcon('fa-solid fa-circle-check');
+  const notCheckedIcon = createNotCheckedIcon('fa-regular fa-circle');
+  button.appendChild(notCheckedIcon);
+  button.appendChild(checkedIcon);
+
+  return button;
+}
+
 // Create Icons
 function createEditIcon(classes) {
   const icon = document.createElement('i');
@@ -71,6 +86,21 @@ function createEditIcon(classes) {
 function createDeleteIcon(classes) {
   const icon = document.createElement('i');
   icon.className = classes;
+  return icon;
+}
+
+function createCheckedIcon(classes) {
+  const icon = document.createElement('icon');
+  icon.id = 'checkedIcon';
+  icon.className = classes;
+
+  return icon;
+}
+
+function createNotCheckedIcon(classes) {
+  const icon = document.createElement('i');
+  icon.className = classes;
+  icon.id = 'notCheckedIcon';
   return icon;
 }
 
@@ -125,8 +155,23 @@ function filterItems(e) {
   });
 }
 
-function taskDone(e) {
-  const element = e.target;
+function isDone(e) {
+  const element = e.target.closest('.item');
+  if (e.target.closest('.checkedBtn')) {
+    element.classList.toggle('toggle');
+
+    const notCheckedIcon = element.querySelector('#notCheckedIcon');
+    const checkedIcon = element.querySelector('#checkedIcon');
+
+    // Toggle the display property of the icons
+    if (element.classList.contains('toggle')) {
+      notCheckedIcon.style.display = 'none';
+      checkedIcon.style.display = 'block';
+    } else {
+      notCheckedIcon.style.display = 'block';
+      checkedIcon.style.display = 'none';
+    }
+  }
 }
 
 checkUI();
@@ -134,6 +179,6 @@ checkUI();
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
-itemList.addEventListener('click', taskDone);
+itemList.addEventListener('click', isDone);
 clearBtn.addEventListener('click', removeAll);
 filterInput.addEventListener('input', filterItems);
