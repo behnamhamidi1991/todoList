@@ -200,6 +200,8 @@ function removeAll() {
       itemList.removeChild(itemList.firstChild);
     }
   }
+
+  localStorage.removeItem('items');
   checkUI();
 }
 

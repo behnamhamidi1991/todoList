@@ -1,6 +1,7 @@
 finished 99
 
-start from 100
+start from 103
 LocalStorage
 
-Learn both Local and Session Storage well
+localStorage done
+Go for update
