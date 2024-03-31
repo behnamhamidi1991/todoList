@@ -1,7 +1,3 @@
-finished 99
+I added LI + p + div
 
-start from 103
-LocalStorage
-
-localStorage done
-Go for update
+Continue ...
