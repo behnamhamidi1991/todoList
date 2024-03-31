@@ -3,6 +3,8 @@ const formInput = document.getElementById('formInput');
 const filterInput = document.getElementById('filter');
 const itemList = document.getElementById('itemList');
 const clearBtn = document.getElementById('clearAll');
+const formBtn = document.getElementById('addBtn');
+let isEditMode = false;
 
 function displayItems() {
   const itemsFromStorage = getItemsFromStorage();
@@ -178,7 +180,16 @@ function onClickItem(e) {
     e.target.parentElement.classList.contains('deleteBtn')
   ) {
     removeItem(e.target.parentElement.parentElement.parentElement);
+  } else if (e.target.parentElement.classList.contains('editBtn')) {
+    setItemToEdit(e.target.parentElement.parentElement.parentElement);
   }
+}
+
+function setItemToEdit(item) {
+  isEditMode = true;
+  item.classList.add('edit-mode');
+  formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item';
+  formBtn.style.backgroundColor = '#0a6478';
 }
 
 // Remove item
